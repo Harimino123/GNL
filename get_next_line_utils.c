@@ -67,7 +67,7 @@ char	*ft_strdup(const char *src)
 		i++;
 	}
 	p[i] = '\0';
-  src = NULL;
+	src = NULL;
 	return (p);
 }
 

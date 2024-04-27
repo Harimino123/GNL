@@ -18,8 +18,8 @@ char	*copy_char(char *str, int index)
 	int		j;
 	int		k;
 
-  if (contains_newline(str) == 0)
-    return (str);
+	if (contains_newline(str) == 0)
+		return (str);
 	j = 0;
 	k = 0;
 	new_stock = malloc((index + 2) * sizeof(char));
@@ -28,23 +28,9 @@ char	*copy_char(char *str, int index)
 	while (j <= index)
 		new_stock[k++] = str[j++];
 	new_stock[k] = '\0';
-  free(str); 
+	free(str);
 	return (new_stock);
 }
-
-// char	*copy_rem_char(char *str, int index)
-// {
-// 	int		j;
-// 	char	*rem_stock;
-
-// 	j = 0;
-// 	rem_stock = malloc((ft_strlen(str) - index) * sizeof(char));
-// 	if (!rem_stock)
-// 		return (NULL);
-// 	while (str[index])
-// 		rem_stock[j++] = str[index++];
-// 	return (rem_stock);
-// }
 
 int	contains_newline(char *buf)
 {
@@ -65,15 +51,15 @@ char	*read_line(int fd, char *buf)
 	char	*stock;
 	int		bytes_reads;
 
-  stock = NULL;
-  bytes_reads = 0;
+	stock = NULL;
+	bytes_reads = 0;
 	if (buf)
 		stock = ft_strdup(buf);
 	while (contains_newline(buf) == 0)
 	{
-    bytes_reads = (int)read(fd, buf, BUFFER_SIZE);
-    if (bytes_reads <= 0)
-      break;
+		bytes_reads = (int)read(fd, buf, BUFFER_SIZE);
+		if (bytes_reads <= 0)
+			break ;
 		buf[bytes_reads] = '\0';
 		stock = ft_strjoin(stock, buf);
 		if (bytes_reads <= 0)
@@ -94,13 +80,13 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stock = read_line(fd, buf);
-  line = NULL;
+	line = NULL;
 	if (!stock)
 		return (free(stock), NULL);
-  buf[0] = '\0';
+	buf[0] = '\0';
 	newline_index = index_of_newline(stock);
 	if (newline_index >= 0)
 		ft_strcpy(buf, &stock[newline_index + 1]);
-  line = copy_char(stock, index_of_newline(stock));
+	line = copy_char(stock, index_of_newline(stock));
 	return (line);
 }
