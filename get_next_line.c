@@ -62,8 +62,6 @@ char	*read_line(int fd, char *buf)
 			break ;
 		buf[bytes_reads] = '\0';
 		stock = ft_strjoin(stock, buf);
-		if (bytes_reads <= 0)
-			break ;
 	}
 	if (bytes_reads <= 0 && !stock[0])
 		return (free(stock), NULL);
